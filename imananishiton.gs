@@ -35,7 +35,7 @@ Imananishiton.prototype = {
     return first.getStartTime() < second.getStartTime() ? 1 : -1
   },
   createStatusMessage: function(event) {
-    if (!event || this.isPrivateEvent(event)) {
+    if (!event || this.isPrivateEvent(event) || !this.isAttendEvent(event)) {
       return ''
     }
     var message = 'なう：' + event.getTitle()
@@ -54,6 +54,9 @@ Imananishiton.prototype = {
   },
   isPrivateEvent: function(event) {
     return event.getVisibility() !== CalendarApp.Visibility.DEFAULT
+  },
+  isAttendEvent: function(event) {
+    return event.getMyStatus() !== CalendarApp.GuestStatus.NO
   },
   getEventSchedule: function(event) {
     return {
