@@ -2,7 +2,7 @@ function myFunction() {
   var email = 'xxxxx'
   var token = 'xxxxx'
   var inEventEmoji = ':date:'
-  var noEventEmoji = ':smile:'
+  var noEventEmoji = ''
   var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji)
   ima.nanishiton()
 }
@@ -36,9 +36,9 @@ Imananishiton.prototype = {
   },
   createStatusMessage: function(event) {
     if (!event || this.isPrivateEvent(event)) {
-      return 'カレンダー予定：予定なし'
+      return ''
     }
-    var message = 'カレンダー予定：' + event.getTitle()
+    var message = 'なう：' + event.getTitle()
     if (event.getLocation() !== '') {
       if (event.getLocation().length > 20) {
         message += ' @ ' + event.getLocation().substr(0, 20) + '...'
