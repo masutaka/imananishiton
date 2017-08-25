@@ -65,7 +65,7 @@ Imananishiton.prototype = {
     }
   },
   createStatusEmoji: function(event) {
-    if (!event || this.isPrivateEvent(event)) {
+    if (!event || this.isPrivateEvent(event) || !this.isAttendEvent(event)) {
       return this.noEventEmoji
     } else {
       return this.inEventEmoji
