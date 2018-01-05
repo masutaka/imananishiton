@@ -1,7 +1,7 @@
 function myFunction() {
   var email = 'xxxxx'
   var token = 'xxxxx'
-  var inEventEmoji = '::'
+  var inEventEmoji = ':date:'
   var noEventEmoji = ''
   var dayOffEmoji = ':day_off:'
   var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, dayOffEmoji)
