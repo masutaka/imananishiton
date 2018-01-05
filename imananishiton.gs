@@ -1,17 +1,19 @@
 function myFunction() {
   var email = 'xxxxx'
   var token = 'xxxxx'
-  var inEventEmoji = ':date:'
+  var inEventEmoji = '::'
   var noEventEmoji = ''
-  var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji)
+  var dayOffEmoji = ':day_off:'
+  var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, dayOffEmoji)
   ima.nanishiton()
 }
 
-var Imananishiton = function(email, token, inEventEmoji, noEventEmoji) {
+var Imananishiton = function(email, token, inEventEmoji, noEventEmoji, dayOffEmoji) {
     this.email = email
     this.token = token
     this.inEventEmoji = inEventEmoji
     this.noEventEmoji = noEventEmoji
+    this.dayOffEmoji = dayOffEmoji
 }
 
 Imananishiton.prototype = {
@@ -58,6 +60,9 @@ Imananishiton.prototype = {
   isAttendEvent: function(event) {
     return event.getMyStatus() !== CalendarApp.GuestStatus.NO
   },
+  isDayOff: function(event) {
+    return event.getTitle().match(/([全半]休|休暇)/)
+  },
   getEventSchedule: function(event) {
     return {
       start: Utilities.formatDate(event.getStartTime(), 'Asia/Tokyo', 'HH:mm'),
@@ -67,6 +72,8 @@ Imananishiton.prototype = {
   createStatusEmoji: function(event) {
     if (!event || this.isPrivateEvent(event) || !this.isAttendEvent(event)) {
       return this.noEventEmoji
+    } else if (this.isDayOff(event)) {
+      return this.dayOffEmoji
     } else {
       return this.inEventEmoji
     }
