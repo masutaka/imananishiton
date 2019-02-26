@@ -4,16 +4,18 @@ function myFunction() {
   var inEventEmoji = ':date:'
   var noEventEmoji = ''
   var dayOffEmoji = ':day_off:'
-  var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, dayOffEmoji)
+  var lunchEmoji = ':lunch:'
+  var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, dayOffEmoji, lunchEmoji)
   ima.nanishiton()
 }
 
-var Imananishiton = function(email, token, inEventEmoji, noEventEmoji, dayOffEmoji) {
+var Imananishiton = function(email, token, inEventEmoji, noEventEmoji, dayOffEmoji, lunchEmoji) {
     this.email = email
     this.token = token
     this.inEventEmoji = inEventEmoji
     this.noEventEmoji = noEventEmoji
     this.dayOffEmoji = dayOffEmoji
+    this.lunchEmoji = lunchEmoji
 }
 
 Imananishiton.prototype = {
@@ -63,6 +65,9 @@ Imananishiton.prototype = {
   isDayOff: function(event) {
     return event.getTitle().match(/([全半]休|休暇)/)
   },
+  isLunch: function(event) {
+    return event.getTitle().match(/(ランチ|昼食)/)
+  },
   getEventSchedule: function(event) {
     return {
       start: Utilities.formatDate(event.getStartTime(), 'Asia/Tokyo', 'HH:mm'),
@@ -74,6 +79,8 @@ Imananishiton.prototype = {
       return this.noEventEmoji
     } else if (this.isDayOff(event)) {
       return this.dayOffEmoji
+    } else if (this.isLunch(event)) {
+      return this.lunchEmoji
     } else {
       return this.inEventEmoji
     }
