@@ -63,7 +63,7 @@ Imananishiton.prototype = {
     return event.getMyStatus() !== CalendarApp.GuestStatus.NO
   },
   isDayOff: function(event) {
-    return event.getTitle().match(/([全半]休|休暇)/)
+    return event.getTitle().match(/([全半]休|休暇|退社)/)
   },
   isLunch: function(event) {
     return event.getTitle().match(/(ランチ|昼食)/)
