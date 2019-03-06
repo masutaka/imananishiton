@@ -85,7 +85,7 @@ Imananishiton.prototype = {
     } else if (this.isOff(event)) {
       return this.offEmoji
     } else if (this.isTaisya(event)) {
-      return this.TaisyaEmoji
+      return this.taisyaEmoji
     } else if (this.isLunch(event)) {
       return this.lunchEmoji
     } else {
