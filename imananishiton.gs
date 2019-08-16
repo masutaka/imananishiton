@@ -4,17 +4,19 @@ function myFunction() {
   var inEventEmoji = ':date:'
   var noEventEmoji = ''
   var offEmoji = ':day_off:'
+  var taisyaEmoji = ':taisya:'
   var lunchEmoji = ':lunch:'
-  var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, offEmoji, lunchEmoji)
+  var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, offEmoji, taisyaEmoji, lunchEmoji)
   ima.nanishiton()
 }
 
-var Imananishiton = function(email, token, inEventEmoji, noEventEmoji, offEmoji, lunchEmoji) {
+var Imananishiton = function(email, token, inEventEmoji, noEventEmoji, offEmoji, taisyaEmoji, lunchEmoji) {
     this.email = email
     this.token = token
     this.inEventEmoji = inEventEmoji
     this.noEventEmoji = noEventEmoji
     this.offEmoji = offEmoji
+    this.taisyaEmoji = taisyaEmoji
     this.lunchEmoji = lunchEmoji
 }
 
@@ -65,7 +67,10 @@ Imananishiton.prototype = {
     return event.getMyStatus() !== CalendarApp.GuestStatus.NO
   },
   isOff: function(event) {
-    return event.getTitle().match(/([全半]休|休暇|退社)/)
+    return event.getTitle().match(/([全半]休|休暇)/)
+  },
+  isTaisya: function(event) {
+    return event.getTitle().match(/退社/)
   },
   isLunch: function(event) {
     return event.getTitle().match(/(ランチ|昼食)/)
@@ -81,6 +86,8 @@ Imananishiton.prototype = {
       return this.noEventEmoji
     } else if (this.isOff(event)) {
       return this.offEmoji
+    } else if (this.isTaisya(event)) {
+      return this.taisyaEmoji
     } else if (this.isLunch(event)) {
       return this.lunchEmoji
     } else {
