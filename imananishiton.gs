@@ -34,6 +34,8 @@ Imananishiton.prototype = {
   },
   compareSchedule: function(first, second) {
     if ((first.isAllDayEvent() && second.isAllDayEvent()) || first.getStartTime() === second.getStartTime()) { return 0 }
+    if (second.getTitle().match(/([全半]休|休暇|退社)/)) { return 1 }
+    if (first.getTitle().match(/([全半]休|休暇|退社)/)) { return -1 }
     if (second.isAllDayEvent()) { return -1 }
     if (first.isAllDayEvent()) { return 1 }
     return first.getStartTime() < second.getStartTime() ? 1 : -1
