@@ -5,7 +5,7 @@ function myFunction() {
   var noEventEmoji = ''
   var offEmoji = ':day_off:'
   var taisyaEmoji = ':taisya:'
-  var remoteWorkEmoji = ':house:'
+  var remoteWorkEmoji = ':remote:'
   var lunchEmoji = ':lunch:'
   var ima = new Imananishiton(email, token, inEventEmoji, noEventEmoji, offEmoji, taisyaEmoji, remoteWorkEmoji, lunchEmoji)
   ima.nanishiton()
