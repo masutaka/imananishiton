@@ -27,6 +27,7 @@ Imananishiton.prototype = {
     var events = this.getCurrentEvents()
     var message = this.createStatusMessage(events[0])
     var emoji = this.createStatusEmoji(events[0])
+    Logger.log('message: '+ message +', emoji: '+ emoji)
     this.changeSlackStatus(message, emoji)
   },
   getCurrentEvents: function() {
@@ -64,6 +65,7 @@ Imananishiton.prototype = {
     return event.getVisibility() !== CalendarApp.Visibility.DEFAULT
   },
   isAttendEvent: function(event) {
+    Logger.log('MyStatus: ' + event.getMyStatus() + ' in isAttendEvent()')
     return event.getMyStatus() !== CalendarApp.GuestStatus.NO
   },
   isOff: function(event) {
